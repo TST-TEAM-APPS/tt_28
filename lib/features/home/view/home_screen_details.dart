@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 import 'package:tt_28/components/custom_button.dart';
 import 'package:tt_28/components/custom_text_field.dart';
@@ -78,129 +79,147 @@ class _HomeScreenDetailsState extends State<HomeScreenDetails> {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
-                    return Material(
-                      borderRadius: BorderRadius.circular(13),
-                      color: AppColors.secondary,
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(13),
-                        highlightColor: Colors.white.withOpacity(0.5),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DishDetailsScreen(
-                                      dishId: dishes[index]!.id,
-                                      model: model,
-                                    )),
-                          );
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(13),
-                            color: Colors.transparent,
+                    return Slidable(
+                      endActionPane: ActionPane(
+                        motion: DrawerMotion(),
+                        children: [
+                          SlidableAction(
+                            onPressed: (context) {
+                              model
+                                  .onDeleteDish(model.state.dishesList[index]!);
+                            },
+                            backgroundColor: AppColors.primary,
+                            foregroundColor: Colors.white,
+                            icon: Icons.delete,
+                            label: 'delete',
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        dishes[index]!.name,
-                                        style: AppFonts.titleMedium.copyWith(
-                                          color: AppColors.onPrimary,
+                        ],
+                      ),
+                      child: Material(
+                        borderRadius: BorderRadius.circular(13),
+                        color: AppColors.secondary,
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(13),
+                          highlightColor: Colors.white.withOpacity(0.5),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DishDetailsScreen(
+                                        dishId: dishes[index]!.id,
+                                        model: model,
+                                      )),
+                            );
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(13),
+                              color: Colors.transparent,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          dishes[index]!.name,
+                                          style: AppFonts.titleMedium.copyWith(
+                                            color: AppColors.onPrimary,
+                                          ),
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        dishes[index]!
-                                            .quantity
-                                            .toInt()
-                                            .toString(),
-                                        style: AppFonts.titleSmall.copyWith(
-                                          color: AppColors.onPrimary,
+                                        const SizedBox(
+                                          width: 5,
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        width: 3,
-                                      ),
-                                      Text(
-                                        'g',
-                                        style: AppFonts.titleSmall.copyWith(
-                                          color: AppColors.onPrimary,
+                                        Text(
+                                          dishes[index]!
+                                              .quantity
+                                              .toInt()
+                                              .toString(),
+                                          style: AppFonts.titleSmall.copyWith(
+                                            color: AppColors.onPrimary,
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        dishes[index]!
-                                            .calories
-                                            .toInt()
-                                            .toString(),
-                                        style: AppFonts.titleSmall.copyWith(
-                                          color: AppColors.onPrimary,
+                                        const SizedBox(
+                                          width: 3,
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        'Kcal',
-                                        style: AppFonts.titleSmall.copyWith(
-                                          color: AppColors.onPrimary,
+                                        Text(
+                                          'g',
+                                          style: AppFonts.titleSmall.copyWith(
+                                            color: AppColors.onPrimary,
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Material(
-                                color: AppColors.primaryFixed,
-                                borderRadius: BorderRadius.circular(6),
-                                child: InkWell(
-                                  borderRadius: BorderRadius.circular(6),
-                                  highlightColor: Colors.white.withOpacity(0.5),
-                                  onTap: () {
-                                    model.onFoodItemAdded(
-                                      FoodModel(
-                                          typeOfFood: widget.foodType,
-                                          name: dishes[index]!.name,
-                                          date: widget.currentDateTime,
-                                          quantity: dishes[index]!.quantity,
-                                          calories: dishes[index]!.calories,
-                                          proteins: dishes[index]!.proteins,
-                                          fats: dishes[index]!.fats,
-                                          carbs: dishes[index]!.carbs,
-                                          isFavorite:
-                                              dishes[index]!.isFavorite),
-                                    );
-                                    widget.foodViewModel.loadData();
-                                  },
-                                  child: Container(
-                                    height: 32,
-                                    width: 32,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(6),
-                                      color: Colors.transparent,
+                                      ],
                                     ),
-                                    child: const Icon(
-                                      Icons.add,
-                                      color: Colors.white,
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          dishes[index]!
+                                              .calories
+                                              .toInt()
+                                              .toString(),
+                                          style: AppFonts.titleSmall.copyWith(
+                                            color: AppColors.onPrimary,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        Text(
+                                          'Kcal',
+                                          style: AppFonts.titleSmall.copyWith(
+                                            color: AppColors.onPrimary,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                Material(
+                                  color: AppColors.primaryFixed,
+                                  borderRadius: BorderRadius.circular(6),
+                                  child: InkWell(
+                                    borderRadius: BorderRadius.circular(6),
+                                    highlightColor:
+                                        Colors.white.withOpacity(0.5),
+                                    onTap: () {
+                                      model.onFoodItemAdded(
+                                        FoodModel(
+                                            typeOfFood: widget.foodType,
+                                            name: dishes[index]!.name,
+                                            date: widget.currentDateTime,
+                                            quantity: dishes[index]!.quantity,
+                                            calories: dishes[index]!.calories,
+                                            proteins: dishes[index]!.proteins,
+                                            fats: dishes[index]!.fats,
+                                            carbs: dishes[index]!.carbs,
+                                            isFavorite:
+                                                dishes[index]!.isFavorite),
+                                      );
+                                      widget.foodViewModel.loadData();
+                                    },
+                                    child: Container(
+                                      height: 32,
+                                      width: 32,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(6),
+                                        color: Colors.transparent,
+                                      ),
+                                      child: const Icon(
+                                        Icons.add,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -373,6 +392,12 @@ class _SearchBarState extends State<_SearchBar> {
                                 alignment: Alignment.topRight,
                                 child: InkWell(
                                   onTap: () {
+                                    nameOfDish = null;
+                                    calories = null;
+                                    quantity = null;
+                                    protein = null;
+                                    fats = null;
+                                    carbs = null;
                                     Navigator.pop(context);
                                   },
                                   highlightColor: Colors.white.withOpacity(0.5),

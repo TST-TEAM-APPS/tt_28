@@ -47,12 +47,12 @@ class DishService {
   }
 
   Future<void> deleteFood(FoodModel foodModel) async {
-    final foodModelBox = await Hive.openBox<FoodModel>('_dishList');
-    final foodModelList = foodModelBox.values.toList();
-    if (foodModelList.contains(foodModel)) {
-      _dishList.remove(foodModel);
-      await foodModelBox.delete(foodModel);
-    }
+    final employeList = await Hive.openBox<FoodModel>('_dishList');
+    final element =
+        employeList.values.toList().singleWhere((e) => e.id == foodModel.id);
+    await element.delete();
+    await employeList.compact();
+    await loadData();
   }
 
   Future<void> editFood(FoodModel foodEditModel) async {

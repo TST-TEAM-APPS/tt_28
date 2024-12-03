@@ -83,6 +83,37 @@ class FoodViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void onDeleteDish(FoodModel foodModel) async {
+    await _dishService.deleteFood(foodModel);
+    _state = FoodViewModelState(
+      totalCalories: _foodService.totalCalories,
+      totalCarbs: _foodService.totalCarbs,
+      totalFats: _foodService.totalFats,
+      totalProteins: _foodService.totalProteins,
+      currentDateTime: _foodService.currentDateTime!,
+      totalGlass: _waterService.totalGlass,
+      currentDish: _dishService.currentDish,
+      dishesList: _dishService.dishList,
+      breakfastCalories: _foodService.totalBreakfast,
+      lunchCalories: _foodService.totalLunch,
+      dinnerCalories: _foodService.totalDinner,
+      snackCalories: _foodService.totalSnack,
+      totalBreakfastProteins: _foodService.totalBreakfastProteins,
+      totalBreakfastCarbs: _foodService.totalBreakfastCarbs,
+      totalBreakfastFats: _foodService.totalBreakfastCarbs,
+      totalDinnerProteins: _foodService.totalDinnerProteins,
+      totalDinnerCarbs: _foodService.totalDinnerCarbs,
+      totalDinnerFats: _foodService.totalDinnerFats,
+      totalLunchCarbs: _foodService.totalLunchCarbs,
+      totalLunchProteins: _foodService.totalLunchProteins,
+      totalLunchFats: _foodService.totalLunchFats,
+      totalSnackCarbs: _foodService.totalSnackCarbs,
+      totalSnackFats: _foodService.totalSnackFats,
+      totalSnackProteins: _foodService.totalSnackProteins,
+    );
+    notifyListeners();
+  }
+
   void onChangeTab(bool tab) async {
     await _dishService.changeTab(tab);
     _state = FoodViewModelState(
