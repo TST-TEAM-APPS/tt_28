@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_info/flutter_app_info.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:forest_tinker_live/core/app_fonts.dart';
 import 'package:forest_tinker_live/core/colors.dart';
+import 'package:forest_tinker_live/core/services/mixins/config_mixin.dart';
+import 'package:in_app_review/in_app_review.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -10,7 +15,92 @@ class SettingsScreen extends StatefulWidget {
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _SettingsScreenState extends State<SettingsScreen> with MainConfig {
+  void _support() => FlutterEmailSender.send(Email(
+      recipients: ['timabakin1991@icloud.com'],
+      body: '[We will check your message as soon as possible]'));
+
+  void _showDocs({
+    required BuildContext context,
+    required String url,
+  }) =>
+      showCupertinoModalPopup(
+        context: context,
+        builder: (context) => CupertinoPopupSurface(
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.9,
+            color: Colors.white,
+            child: SafeArea(
+              top: false,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: WebViewWidget(
+                      controller: WebViewController()
+                        ..loadRequest(
+                          Uri.parse(url),
+                        ),
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(
+                      left: 10,
+                      right: 10,
+                      top: 10,
+                    ),
+                    child: _DoneButton(),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+
+  void _showVersion(BuildContext context) {
+    final appInfo = AppInfo.of(context);
+
+    showCupertinoDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => CupertinoAlertDialog(
+        title: Text(
+          appInfo.package.appName,
+          style: const TextStyle(color: CupertinoColors.black),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: 10),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                'assets/images/icon.png',
+                width: 40,
+                height: 40,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              'Version: ${appInfo.package.version.major}.${appInfo.package.version.minor}.${appInfo.package.version.patch}',
+              style: const TextStyle(color: CupertinoColors.black),
+            ),
+          ],
+        ),
+        actions: <Widget>[
+          CupertinoDialogAction(
+            onPressed: Navigator.of(context).pop,
+            child: Text(
+              'OK',
+              style:
+                  const TextStyle().copyWith(color: CupertinoColors.activeBlue),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -39,12 +129,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 child: Column(
                   children: [
                     _SettingsItem(
-                      title: 'Contact us',
-                      onTap: () {},
+                      icon: const Icon(CupertinoIcons.conversation_bubble),
+                      title: 'Support',
+                      onTap: _support,
                     ),
                     _SettingsItem(
+                      icon: const Icon(CupertinoIcons.rays),
                       title: 'Rate us',
-                      onTap: () {},
+                      onTap: InAppReview.instance.requestReview,
                     ),
                   ],
                 ),
@@ -61,16 +153,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 child: Column(
                   children: [
                     _SettingsItem(
+                      icon: const Icon(CupertinoIcons.doc),
                       title: 'Privacy Policy',
-                      onTap: () {},
+                      onTap: () => _showDocs(context: context, url: privacy),
                     ),
                     _SettingsItem(
+                      icon: const Icon(CupertinoIcons.doc),
                       title: 'Terms of Use',
-                      onTap: () {},
+                      onTap: () => _showDocs(context: context, url: terms),
                     ),
                     _SettingsItem(
+                      icon: const Icon(CupertinoIcons.app_badge),
                       title: 'Application version',
-                      onTap: () {},
+                      onTap: () => _showVersion(context),
                     ),
                   ],
                 ),
@@ -86,19 +181,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
 class _SettingsItem extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
+  final Icon icon;
   const _SettingsItem({
     required this.title,
+    required this.icon,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
-      onPressed: onTap, 
+      onPressed: onTap,
       child: SizedBox(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            icon,
+            const SizedBox(width: 10),
             Text(
               title,
               style: AppFonts.titleSmall.copyWith(color: AppColors.onPrimary),
@@ -145,6 +244,33 @@ class _AppBar extends StatelessWidget {
           width: 20,
         )
       ],
+    );
+  }
+}
+
+class _DoneButton extends StatelessWidget {
+  const _DoneButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoButton(
+      padding: EdgeInsets.zero,
+      onPressed: Navigator.of(context).pop,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 500),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: CupertinoColors.lightBackgroundGray),
+        height: 50,
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        width: double.infinity,
+        child: const Center(
+          child: Text(
+            'Done',
+            style: TextStyle(color: CupertinoColors.activeBlue),
+          ),
+        ),
+      ),
     );
   }
 }

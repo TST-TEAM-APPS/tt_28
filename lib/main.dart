@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app_info/flutter_app_info.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:forest_tinker_live/core/services/locator.dart';
+import 'package:forest_tinker_live/features/onb/initial_screen.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:forest_tinker_live/core/colors.dart';
 import 'package:forest_tinker_live/features/food_screen/model/recepi.dart';
 import 'package:forest_tinker_live/features/home/model/food_model.dart';
 import 'package:forest_tinker_live/features/home/model/water_model.dart';
-import 'package:forest_tinker_live/features/onb/onb_screen.dart';
 
 void main() async {
   final bindings = WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +24,14 @@ void main() async {
   Hive.registerAdapter(WaterModelAdapter());
   Hive.registerAdapter(RecipeAdapter());
   Hive.registerAdapter(IngredientAdapter());
-  runApp(const MyApp());
+
+  await LocatorOfServices.setServices();
+  runApp(
+    AppInfo(
+      data: await AppInfoData.get(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -31,18 +40,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Forest Tinker live',
-      theme: ThemeData(
-        textTheme: GoogleFonts.poppinsTextTheme(),
-        scaffoldBackgroundColor: AppColors.surface,
-        highlightColor: Colors.transparent,
-        splashColor: Colors.transparent,
-        bottomSheetTheme:
-            const BottomSheetThemeData(backgroundColor: Colors.transparent),
-        splashFactory: NoSplash.splashFactory,
-      ),
-      home: const Onb(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Forest Tinker live',
+        theme: ThemeData(
+          textTheme: GoogleFonts.poppinsTextTheme(),
+          scaffoldBackgroundColor: AppColors.surface,
+          highlightColor: Colors.transparent,
+          splashColor: Colors.transparent,
+          bottomSheetTheme:
+              const BottomSheetThemeData(backgroundColor: Colors.transparent),
+          splashFactory: NoSplash.splashFactory,
+        ),
+        home: const InitialScreen());
   }
 }

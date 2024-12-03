@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:forest_tinker_live/components/custom_button.dart';
 import 'package:forest_tinker_live/core/app_fonts.dart';
 import 'package:forest_tinker_live/core/colors.dart';
