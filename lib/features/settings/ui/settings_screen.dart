@@ -129,12 +129,12 @@ class _SettingsScreenState extends State<SettingsScreen> with MainConfig {
                 child: Column(
                   children: [
                     _SettingsItem(
-                      icon: const Icon(CupertinoIcons.conversation_bubble),
+                      icon: Icons.settings_accessibility,
                       title: 'Support',
                       onTap: _support,
                     ),
                     _SettingsItem(
-                      icon: const Icon(CupertinoIcons.rays),
+                      icon: Icons.rate_review_outlined,
                       title: 'Rate us',
                       onTap: InAppReview.instance.requestReview,
                     ),
@@ -153,17 +153,17 @@ class _SettingsScreenState extends State<SettingsScreen> with MainConfig {
                 child: Column(
                   children: [
                     _SettingsItem(
-                      icon: const Icon(CupertinoIcons.doc),
+                      icon: Icons.edit_document,
                       title: 'Privacy Policy',
                       onTap: () => _showDocs(context: context, url: privacy),
                     ),
                     _SettingsItem(
-                      icon: const Icon(CupertinoIcons.doc),
+                      icon: Icons.rule_sharp,
                       title: 'Terms of Use',
                       onTap: () => _showDocs(context: context, url: terms),
                     ),
                     _SettingsItem(
-                      icon: const Icon(CupertinoIcons.app_badge),
+                      icon: Icons.app_settings_alt_outlined,
                       title: 'Application version',
                       onTap: () => _showVersion(context),
                     ),
@@ -181,7 +181,7 @@ class _SettingsScreenState extends State<SettingsScreen> with MainConfig {
 class _SettingsItem extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
-  final Icon icon;
+  final IconData icon;
   const _SettingsItem({
     required this.title,
     required this.icon,
@@ -194,14 +194,14 @@ class _SettingsItem extends StatelessWidget {
       onPressed: onTap,
       child: SizedBox(
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            icon,
-            const SizedBox(width: 10),
+            Icon(icon),
+            const SizedBox(width: 30),
             Text(
               title,
               style: AppFonts.titleSmall.copyWith(color: AppColors.onPrimary),
             ),
+            const Spacer(), 
             const Icon(
               Icons.arrow_forward_ios,
               size: 14,
