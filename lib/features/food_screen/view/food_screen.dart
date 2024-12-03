@@ -572,34 +572,31 @@ class _RecipeListState extends State<RecipeList> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                widget.title,
-                style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => RecipeGridScreen(
-                                title: widget.title,
-                                foodType: widget.foodType,
-                                recipes: widget.recipes,
-                              )));
-                },
-                child: const Text('See all',
-                    style: TextStyle(color: Colors.green)),
-              ),
-            ],
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              widget.title,
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => RecipeGridScreen(
+                              title: widget.title,
+                              foodType: widget.foodType,
+                              recipes: widget.recipes,
+                            )));
+              },
+              child:
+                  const Text('See all', style: TextStyle(color: Colors.green)),
+            ),
+          ],
         ),
         SizedBox(
           height: 172,

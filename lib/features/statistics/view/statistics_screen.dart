@@ -128,7 +128,6 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                 ),
                 Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: AppColors.secondary,
@@ -157,7 +156,7 @@ class _WeeklyFoodChartState extends State<WeeklyFoodChart> {
   Widget build(BuildContext context) {
     final model = context.watch<StatisticViewModel>();
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.only(right: 16.0, top: 16),
       child: SizedBox(
         height: 200,
         width: double.infinity,
@@ -187,13 +186,16 @@ class _WeeklyFoodChartState extends State<WeeklyFoodChart> {
                   reservedSize: 40,
                   interval: 300,
                   getTitlesWidget: (value, meta) {
-                    return Text(
-                      '${value.toInt()} K',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 4, bottom: 4),
+                      child: Text(
+                        '${value.toInt()} K',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                        ),
+                        textAlign: TextAlign.right,
                       ),
-                      textAlign: TextAlign.right,
                     );
                   },
                 ),
@@ -270,7 +272,7 @@ class _WeeklyWaterChartState extends State<WeeklyWaterChart> {
   Widget build(BuildContext context) {
     final model = context.watch<StatisticViewModel>();
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.only(right: 16, top: 16),
       child: SizedBox(
         height: 200,
         width: double.infinity,
@@ -300,14 +302,16 @@ class _WeeklyWaterChartState extends State<WeeklyWaterChart> {
                   reservedSize: 40,
                   interval: 3,
                   getTitlesWidget: (value, meta) {
-                    return Text(
-                      '${value.toInt()} L',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                      ),
-                      textAlign: TextAlign.right,
-                    );
+                    return Padding(
+                        padding: const EdgeInsets.only(right: 4, bottom: 4),
+                        child: Text(
+                          '${0.5 * value.toInt()} L',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                          ),
+                          textAlign: TextAlign.right,
+                        ));
                   },
                 ),
               ),
@@ -354,7 +358,8 @@ class _WeeklyWaterChartState extends State<WeeklyWaterChart> {
               LineChartBarData(
                 spots: List.generate(model.state.foodList.length, (index) {
                   final data = model.state.waterList[index];
-                  return FlSpot(index.toDouble(), data.totalWater.toDouble());
+                  return FlSpot(
+                      index.toDouble(), 0.5 * data.totalWater.toDouble());
                 }),
                 color: Colors.purple,
                 barWidth: 4,

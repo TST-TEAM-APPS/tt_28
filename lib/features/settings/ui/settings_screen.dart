@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tt_28/components/custom_button.dart';
 import 'package:tt_28/core/app_fonts.dart';
@@ -32,7 +33,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               Container(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 23, vertical: 10),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(17),
                     color: AppColors.secondary),
@@ -54,7 +55,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               Container(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 23, vertical: 10),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(17),
                     color: AppColors.secondary),
@@ -94,31 +95,24 @@ class _SettingsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      borderRadius: BorderRadius.circular(2),
-      child: InkWell(
-        onTap: () {
-          onTap();
-        },
-        highlightColor: AppColors.onPrimary.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(10),
-        child: SizedBox(
-          height: 40,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                title,
-                style: AppFonts.titleSmall.copyWith(color: AppColors.onPrimary),
-              ),
-              const Icon(
-                Icons.arrow_forward_ios,
-                size: 14,
-                color: AppColors.primary,
-              )
-            ],
-          ),
+    return CupertinoButton(
+      onPressed: () {
+        onTap();
+      },
+      child: SizedBox(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: AppFonts.titleSmall.copyWith(color: AppColors.onPrimary),
+            ),
+            const Icon(
+              Icons.arrow_forward_ios,
+              size: 14,
+              color: AppColors.primary,
+            )
+          ],
         ),
       ),
     );

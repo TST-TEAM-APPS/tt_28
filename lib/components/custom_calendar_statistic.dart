@@ -61,8 +61,8 @@ class _CustomCalendarStatisticState extends State<CustomCalendarStatistic> {
         config: config,
         value: [_selectedDay ?? widget.value], // Подсветка выбранного дня
         onValueChanged: (dates) {
-          if (dates.isNotEmpty && dates[0] != null) {
-            final selectedDay = dates[0]!;
+          if (dates.isNotEmpty) {
+            final selectedDay = dates[0];
             final startOfWeek =
                 selectedDay.subtract(Duration(days: selectedDay.weekday - 1));
             final endOfWeek = startOfWeek.add(const Duration(days: 6));

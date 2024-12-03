@@ -138,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  '${model.state.totalGlass} L',
+                                  '${0.25 * model.state.totalGlass} L',
                                   style: AppFonts.titleLarge
                                       .copyWith(color: Colors.white),
                                 ),

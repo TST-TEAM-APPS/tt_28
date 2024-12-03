@@ -49,8 +49,9 @@ class _CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color:
-          widget.isValid ?? true ? widget.backgroundColor : AppColors.secondary,
+      color: widget.isValid ?? true
+          ? widget.backgroundColor
+          : AppColors.primaryFixed,
       borderRadius: widget.borderRadius,
       child: InkWell(
         highlightColor: widget.highlightColor ?? Colors.white.withOpacity(0.7),
