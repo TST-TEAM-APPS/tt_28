@@ -373,189 +373,139 @@ class _SearchBarState extends State<_SearchBar> {
                   context: context,
                   isScrollControlled: true,
                   builder: (context) {
-                    return SingleChildScrollView(
-                      child: Padding(
-                        padding: MediaQuery.of(context).viewInsets,
-                        child: Container(
-                          padding: const EdgeInsets.all(16),
-                          decoration: const BoxDecoration(
-                              color: AppColors.secondary,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(30),
-                                topRight: Radius.circular(30),
-                              )),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Align(
-                                alignment: Alignment.topRight,
-                                child: InkWell(
-                                  onTap: () {
-                                    nameOfDish = null;
-                                    calories = null;
-                                    quantity = null;
-                                    protein = null;
-                                    fats = null;
-                                    carbs = null;
-                                    Navigator.pop(context);
+                    return StatefulBuilder(builder:
+                        (BuildContext context, StateSetter setModalState) {
+                      return SingleChildScrollView(
+                        child: Padding(
+                          padding: MediaQuery.of(context).viewInsets,
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: const BoxDecoration(
+                                color: AppColors.secondary,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(30),
+                                  topRight: Radius.circular(30),
+                                )),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Align(
+                                  alignment: Alignment.topRight,
+                                  child: InkWell(
+                                    onTap: () {
+                                      nameOfDish = null;
+                                      calories = null;
+                                      quantity = null;
+                                      protein = null;
+                                      fats = null;
+                                      carbs = null;
+                                      Navigator.pop(context);
+                                    },
+                                    highlightColor:
+                                        Colors.white.withOpacity(0.5),
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: const Icon(
+                                      Icons.close,
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 6,
+                                ),
+                                Text(
+                                  'Name of dish',
+                                  style: AppFonts.titleMedium.copyWith(
+                                    color: AppColors.onSurface,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 6,
+                                ),
+                                CustomTextField(
+                                  onChange: (value) {
+                                    nameOfDish = value;
+                                    setModalState(
+                                        () {}); // Обновление только внутри модального окна
                                   },
-                                  highlightColor: Colors.white.withOpacity(0.5),
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: const Icon(
-                                    Icons.close,
-                                    color: Colors.white,
-                                    size: 20,
-                                  ),
+                                  hintText: 'Name of dish',
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 6,
-                              ),
-                              Text(
-                                'Name of dish',
-                                style: AppFonts.titleMedium.copyWith(
-                                  color: AppColors.onSurface,
+                                const SizedBox(
+                                  height: 12,
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 6,
-                              ),
-                              CustomTextField(
-                                onChange: (value) {
-                                  nameOfDish = value;
-                                  setState(() {});
-                                },
-                                hintText: 'Name of dish',
-                              ),
-                              const SizedBox(
-                                height: 12,
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
+                                Row(
+                                  children: [
+                                    Expanded(
                                       child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'How many calories',
-                                        style: AppFonts.titleMedium.copyWith(
-                                          color: AppColors.onSurface,
-                                        ),
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'How many calories',
+                                            style:
+                                                AppFonts.titleMedium.copyWith(
+                                              color: AppColors.onSurface,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 6,
+                                          ),
+                                          CustomTextField(
+                                            onChange: (value) {
+                                              calories = double.tryParse(value);
+                                              setModalState(() {});
+                                            },
+                                            hintText: '0',
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ],
                                       ),
-                                      const SizedBox(
-                                        height: 6,
-                                      ),
-                                      CustomTextField(
-                                        onChange: (value) {
-                                          calories = double.tryParse(value);
-                                          setState(() {});
-                                        },
-                                        hintText: '0',
-                                        keyboardType: TextInputType.number,
-                                      ),
-                                    ],
-                                  )),
-                                  const SizedBox(
-                                    width: 24,
-                                  ),
-                                  Expanded(
+                                    ),
+                                    const SizedBox(
+                                      width: 24,
+                                    ),
+                                    Expanded(
                                       child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'How many grams',
-                                        style: AppFonts.titleMedium.copyWith(
-                                          color: AppColors.onSurface,
-                                        ),
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'How many grams',
+                                            style:
+                                                AppFonts.titleMedium.copyWith(
+                                              color: AppColors.onSurface,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 6,
+                                          ),
+                                          CustomTextField(
+                                            onChange: (value) {
+                                              quantity = double.tryParse(value);
+                                              setModalState(() {});
+                                            },
+                                            hintText: '0',
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ],
                                       ),
-                                      const SizedBox(
-                                        height: 6,
-                                      ),
-                                      CustomTextField(
-                                        onChange: (value) {
-                                          quantity = double.tryParse(value);
-                                          setState(() {});
-                                        },
-                                        hintText: '0',
-                                        keyboardType: TextInputType.number,
-                                      ),
-                                    ],
-                                  ))
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 12,
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                      child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'How many protein',
-                                        style: AppFonts.titleMedium.copyWith(
-                                          color: AppColors.onSurface,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 6,
-                                      ),
-                                      CustomTextField(
-                                        onChange: (value) {
-                                          protein = double.tryParse(value);
-                                          setState(() {});
-                                        },
-                                        hintText: '0',
-                                        keyboardType: TextInputType.number,
-                                      ),
-                                    ],
-                                  )),
-                                  const SizedBox(
-                                    width: 24,
-                                  ),
-                                  Expanded(
-                                      child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'How many fats',
-                                        style: AppFonts.titleMedium.copyWith(
-                                          color: AppColors.onSurface,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 6,
-                                      ),
-                                      CustomTextField(
-                                        onChange: (value) {
-                                          fats = double.tryParse(value);
-                                          setState(() {});
-                                        },
-                                        hintText: '0',
-                                        keyboardType: TextInputType.number,
-                                      ),
-                                    ],
-                                  ))
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 12,
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Column(
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 12,
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                        child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'How many carbs',
+                                          'How many protein',
                                           style: AppFonts.titleMedium.copyWith(
                                             color: AppColors.onSurface,
                                           ),
@@ -565,57 +515,127 @@ class _SearchBarState extends State<_SearchBar> {
                                         ),
                                         CustomTextField(
                                           onChange: (value) {
-                                            carbs = double.tryParse(value);
-                                            setState(() {});
+                                            protein = double.tryParse(value);
+                                            setModalState(() {});
                                           },
                                           hintText: '0',
                                           keyboardType: TextInputType.number,
                                         ),
                                       ],
+                                    )),
+                                    const SizedBox(
+                                      width: 24,
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    width: 24,
-                                  ),
-                                  const Expanded(child: SizedBox())
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 24,
-                              ),
-                              CustomButton(
-                                title: 'Save',
-                                isValid: nameOfDish != null &&
-                                    nameOfDish != '' &&
-                                    calories != null &&
-                                    quantity != null &&
-                                    protein != null &&
-                                    fats != null &&
-                                    carbs != null,
-                                onTap: () async {
-                                  await model.onDishItemAdded(FoodModel(
-                                      typeOfFood: FoodType.breakfast,
-                                      name: nameOfDish!,
-                                      date: DateTime.now(),
-                                      quantity: quantity!,
-                                      calories: calories!,
-                                      proteins: protein!,
-                                      fats: fats!,
-                                      carbs: carbs!,
-                                      isFavorite: false));
-                                  Navigator.pop(context);
-                                },
-                                backgroundColor: AppColors.primary,
-                                titleStyle: AppFonts.titleLarge.copyWith(
-                                  color: AppColors.onPrimary,
+                                    Expanded(
+                                        child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'How many fats',
+                                          style: AppFonts.titleMedium.copyWith(
+                                            color: AppColors.onSurface,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 6,
+                                        ),
+                                        CustomTextField(
+                                          onChange: (value) {
+                                            fats = double.tryParse(value);
+                                            setModalState(() {});
+                                          },
+                                          hintText: '0',
+                                          keyboardType: TextInputType.number,
+                                        ),
+                                      ],
+                                    ))
+                                  ],
                                 ),
-                                borderRadius: BorderRadius.circular(22),
-                              )
-                            ],
+                                const SizedBox(
+                                  height: 12,
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'How many carbs',
+                                            style:
+                                                AppFonts.titleMedium.copyWith(
+                                              color: AppColors.onSurface,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 6,
+                                          ),
+                                          CustomTextField(
+                                            onChange: (value) {
+                                              carbs = double.tryParse(value);
+                                              setModalState(() {});
+                                            },
+                                            hintText: '0',
+                                            keyboardType: TextInputType.number,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 24,
+                                    ),
+                                    const Expanded(child: SizedBox())
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 24,
+                                ),
+                                CustomButton(
+                                  title: 'Save',
+                                  isValid: nameOfDish != null &&
+                                      nameOfDish != '' &&
+                                      calories != null &&
+                                      quantity != null &&
+                                      protein != null &&
+                                      fats != null &&
+                                      carbs != null,
+                                  onTap: () async {
+                                    await model
+                                        .onDishItemAdded(FoodModel(
+                                            typeOfFood: FoodType.breakfast,
+                                            name: nameOfDish!,
+                                            date: DateTime.now(),
+                                            quantity: quantity!,
+                                            calories: calories!,
+                                            proteins: protein!,
+                                            fats: fats!,
+                                            carbs: carbs!,
+                                            isFavorite: false))
+                                        .then((_) {
+                                      nameOfDish = null;
+                                      calories = null;
+                                      quantity = null;
+                                      protein = null;
+                                      fats = null;
+                                      carbs = null;
+                                    });
+
+                                    Navigator.pop(context);
+                                  },
+                                  backgroundColor: AppColors.primary,
+                                  titleStyle: AppFonts.titleLarge.copyWith(
+                                    color: AppColors.onPrimary,
+                                  ),
+                                  borderRadius: BorderRadius.circular(22),
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    );
+                      );
+                    });
                   });
             },
             child: Container(
