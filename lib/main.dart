@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app_info/flutter_app_info.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:forest_tinker_live/core/services/flagsmith.dart';
 import 'package:forest_tinker_live/core/services/locator.dart';
 import 'package:forest_tinker_live/features/onb/initial_screen.dart';
+import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:forest_tinker_live/core/colors.dart';
@@ -31,6 +33,10 @@ void main() async {
       data: await AppInfoData.get(),
       child: const MyApp(),
     ),
+  );
+
+  WidgetsBinding.instance.addObserver(
+    AppLifecycleListener(onDetach: GetIt.instance<Flagsmith>().closeClient),
   );
 }
 
