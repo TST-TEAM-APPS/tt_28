@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:tt_28/features/statistics/service/statistic_food_service.dart';
-import 'package:tt_28/features/statistics/service/statistic_water_service.dart';
-import 'package:tt_28/features/statistics/view_model/statistic_state.dart';
+import 'package:forest_tinker_live/features/statistics/service/statistic_food_service.dart';
+import 'package:forest_tinker_live/features/statistics/service/statistic_water_service.dart';
+import 'package:forest_tinker_live/features/statistics/view_model/statistic_state.dart';
 
 class StatisticViewModel extends ChangeNotifier {
   final StatisticFoodService _foodService = StatisticFoodService();

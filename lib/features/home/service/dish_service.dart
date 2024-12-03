@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:tt_28/features/home/model/food_model.dart';
+import 'package:forest_tinker_live/features/home/model/food_model.dart';
 
 class DishService {
   List<FoodModel?> _dishList = [];

@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-import 'package:tt_28/features/home/model/water_model.dart';
+import 'package:forest_tinker_live/features/home/model/water_model.dart';
 
 class DailyWaterData {
   final DateTime date;

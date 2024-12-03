@@ -1,11 +1,11 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tt_28/components/custom_current_date_statistic.dart';
-import 'package:tt_28/core/app_fonts.dart';
-import 'package:tt_28/core/colors.dart';
+import 'package:forest_tinker_live/components/custom_current_date_statistic.dart';
+import 'package:forest_tinker_live/core/app_fonts.dart';
+import 'package:forest_tinker_live/core/colors.dart';
 
-import 'package:tt_28/features/statistics/view_model/statistic_view_model.dart';
+import 'package:forest_tinker_live/features/statistics/view_model/statistic_view_model.dart';
 
 class StatisticsScreen extends StatefulWidget {
   const StatisticsScreen({super.key});

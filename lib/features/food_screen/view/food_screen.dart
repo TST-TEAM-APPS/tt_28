@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:tt_28/core/app_fonts.dart';
-import 'package:tt_28/core/colors.dart';
-import 'package:tt_28/features/food_screen/model/recepi.dart';
-import 'package:tt_28/features/food_screen/view/food_detail_screen.dart';
-import 'package:tt_28/features/food_screen/view/food_favorite_screen.dart';
-import 'package:tt_28/features/food_screen/view/food_solo_screen.dart';
-import 'package:tt_28/features/home/model/food_model.dart';
+import 'package:forest_tinker_live/core/app_fonts.dart';
+import 'package:forest_tinker_live/core/colors.dart';
+import 'package:forest_tinker_live/features/food_screen/model/recepi.dart';
+import 'package:forest_tinker_live/features/food_screen/view/food_detail_screen.dart';
+import 'package:forest_tinker_live/features/food_screen/view/food_favorite_screen.dart';
+import 'package:forest_tinker_live/features/food_screen/view/food_solo_screen.dart';
+import 'package:forest_tinker_live/features/home/model/food_model.dart';
 
 class RecipesScreen extends StatefulWidget {
   const RecipesScreen({super.key});

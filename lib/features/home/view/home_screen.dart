@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:tt_28/components/custom_current_date_widget.dart';
-import 'package:tt_28/core/app_fonts.dart';
-import 'package:tt_28/core/colors.dart';
-import 'package:tt_28/features/home/model/food_model.dart';
-import 'package:tt_28/features/home/model/water_model.dart';
-import 'package:tt_28/features/home/view/home_screen_details.dart';
-import 'package:tt_28/features/home/view_model/food_view_model.dart';
-import 'package:tt_28/features/settings/ui/settings_screen.dart';
+import 'package:forest_tinker_live/components/custom_current_date_widget.dart';
+import 'package:forest_tinker_live/core/app_fonts.dart';
+import 'package:forest_tinker_live/core/colors.dart';
+import 'package:forest_tinker_live/features/home/model/food_model.dart';
+import 'package:forest_tinker_live/features/home/model/water_model.dart';
+import 'package:forest_tinker_live/features/home/view/home_screen_details.dart';
+import 'package:forest_tinker_live/features/home/view_model/food_view_model.dart';
+import 'package:forest_tinker_live/features/settings/ui/settings_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

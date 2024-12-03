@@ -1,7 +1,7 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
-import 'package:tt_28/core/app_fonts.dart';
-import 'package:tt_28/core/colors.dart';
+import 'package:forest_tinker_live/core/app_fonts.dart';
+import 'package:forest_tinker_live/core/colors.dart';
 
 class CustomCalendarStatistic extends StatefulWidget {
   final DateTime value;

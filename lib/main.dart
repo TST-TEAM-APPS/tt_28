@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tt_28/core/colors.dart';
-import 'package:tt_28/features/food_screen/model/recepi.dart';
-import 'package:tt_28/features/home/model/food_model.dart';
-import 'package:tt_28/features/home/model/water_model.dart';
-import 'package:tt_28/features/onb/onb_screen.dart';
+import 'package:forest_tinker_live/core/colors.dart';
+import 'package:forest_tinker_live/features/food_screen/model/recepi.dart';
+import 'package:forest_tinker_live/features/home/model/food_model.dart';
+import 'package:forest_tinker_live/features/home/model/water_model.dart';
+import 'package:forest_tinker_live/features/onb/onb_screen.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
+  final bindings = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: bindings);
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   await Hive.initFlutter();
   Hive.registerAdapter(FoodModelAdapter());
   Hive.registerAdapter(FoodTypeAdapter());
@@ -26,7 +32,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'tt_25',
+      title: 'Forest Tinker live',
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
         scaffoldBackgroundColor: AppColors.surface,

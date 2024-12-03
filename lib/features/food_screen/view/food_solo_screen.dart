@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:tt_28/core/colors.dart';
-import 'package:tt_28/features/food_screen/model/recepi.dart';
+import 'package:forest_tinker_live/core/colors.dart';
+import 'package:forest_tinker_live/features/food_screen/model/recepi.dart';
 
 class RecipeDetailScreen extends StatefulWidget {
   final Recipe recipe;

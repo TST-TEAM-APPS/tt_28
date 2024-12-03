@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tt_28/core/colors.dart';
+import 'package:forest_tinker_live/core/colors.dart';
 
 enum _Variant { standart, alert }
 

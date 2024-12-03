@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:tt_28/core/app_fonts.dart';
-import 'package:tt_28/core/colors.dart';
-import 'package:tt_28/features/home/model/food_model.dart';
-import 'package:tt_28/features/home/view_model/food_view_model.dart';
+import 'package:forest_tinker_live/core/app_fonts.dart';
+import 'package:forest_tinker_live/core/colors.dart';
+import 'package:forest_tinker_live/features/home/model/food_model.dart';
+import 'package:forest_tinker_live/features/home/view_model/food_view_model.dart';
 
 class DishDetailsScreen extends StatefulWidget {
   final FoodViewModel model;

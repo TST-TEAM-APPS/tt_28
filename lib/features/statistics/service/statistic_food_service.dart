@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
-import 'package:tt_28/features/home/model/food_model.dart';
-import 'package:tt_28/features/statistics/service/statistic_water_service.dart';
+import 'package:forest_tinker_live/features/home/model/food_model.dart';
+import 'package:forest_tinker_live/features/statistics/service/statistic_water_service.dart';
 
 class StatisticFoodService {
   List<FoodModel?> _foodList = [];

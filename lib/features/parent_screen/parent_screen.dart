@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tt_28/core/app_fonts.dart';
-import 'package:tt_28/core/btm.dart';
-import 'package:tt_28/core/colors.dart';
+import 'package:forest_tinker_live/core/app_fonts.dart';
+import 'package:forest_tinker_live/core/btm.dart';
+import 'package:forest_tinker_live/core/colors.dart';
 
-import 'package:tt_28/features/food_screen/view/food_screen.dart';
-import 'package:tt_28/features/home/view/home_screen.dart';
-import 'package:tt_28/features/home/view_model/food_view_model.dart';
+import 'package:forest_tinker_live/features/food_screen/view/food_screen.dart';
+import 'package:forest_tinker_live/features/home/view/home_screen.dart';
+import 'package:forest_tinker_live/features/home/view_model/food_view_model.dart';
 
-import 'package:tt_28/features/statistics/view/statistics_screen.dart';
-import 'package:tt_28/features/statistics/view_model/statistic_view_model.dart';
+import 'package:forest_tinker_live/features/statistics/view/statistics_screen.dart';
+import 'package:forest_tinker_live/features/statistics/view_model/statistic_view_model.dart';
 
 class ParentScreen extends StatefulWidget {
   const ParentScreen({super.key});

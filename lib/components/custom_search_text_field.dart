@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tt_28/core/app_fonts.dart';
-import 'package:tt_28/core/colors.dart';
+import 'package:forest_tinker_live/core/app_fonts.dart';
+import 'package:forest_tinker_live/core/colors.dart';
 
 class CustomSearchTextField extends StatefulWidget {
   final Function onChange;

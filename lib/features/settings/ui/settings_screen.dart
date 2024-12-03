@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tt_28/core/app_fonts.dart';
-import 'package:tt_28/core/colors.dart';
+import 'package:forest_tinker_live/core/app_fonts.dart';
+import 'package:forest_tinker_live/core/colors.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -85,9 +85,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
 class _SettingsItem extends StatelessWidget {
   final String title;
-  final Function onTap;
+  final VoidCallback onTap;
   const _SettingsItem({
-    super.key,
     required this.title,
     required this.onTap,
   });
@@ -95,9 +94,7 @@ class _SettingsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoButton(
-      onPressed: () {
-        onTap();
-      },
+      onPressed: onTap, 
       child: SizedBox(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

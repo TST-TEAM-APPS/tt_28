@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tt_28/features/home/model/food_model.dart';
-import 'package:tt_28/features/home/model/water_model.dart';
-import 'package:tt_28/features/home/service/dish_service.dart';
-import 'package:tt_28/features/home/service/food_service.dart';
-import 'package:tt_28/features/home/service/water_service.dart';
-import 'package:tt_28/features/home/view_model/food_state.dart';
+import 'package:forest_tinker_live/features/home/model/food_model.dart';
+import 'package:forest_tinker_live/features/home/model/water_model.dart';
+import 'package:forest_tinker_live/features/home/service/dish_service.dart';
+import 'package:forest_tinker_live/features/home/service/food_service.dart';
+import 'package:forest_tinker_live/features/home/service/water_service.dart';
+import 'package:forest_tinker_live/features/home/view_model/food_state.dart';
 
 class FoodViewModel extends ChangeNotifier {
   final FoodService _foodService = FoodService();
